@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Notifications — Sally AI Assistant</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px 20px; line-height: 1.6; color: #333; }
+        h1 { color: #1a1a1a; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h2 { color: #444; margin-top: 30px; }
+        .subtitle { color: #666; font-size: 15px; margin-top: -8px; }
+        .form-section { background: #f9f9f9; border: 1px solid #e5e5e5; border-radius: 12px; padding: 28px; margin: 24px 0; }
+        label.field-label { display: block; font-weight: 600; font-size: 14px; color: #444; margin-bottom: 6px; }
+        input[type="tel"], input[type="text"] {
+            width: 100%; padding: 12px 14px; font-size: 16px; border: 1px solid #ccc; border-radius: 8px;
+            box-sizing: border-box; font-family: inherit; transition: border-color 0.2s;
+        }
+        input[type="tel"]:focus, input[type="text"]:focus { outline: none; border-color: #4f8cff; box-shadow: 0 0 0 3px rgba(79,140,255,0.15); }
+        .consent-row { display: flex; gap: 12px; align-items: flex-start; margin: 20px 0 8px; }
+        .consent-row input[type="checkbox"] { margin-top: 4px; width: 18px; height: 18px; flex-shrink: 0; accent-color: #4f8cff; cursor: pointer; }
+        .consent-text { font-size: 14px; color: #555; line-height: 1.5; }
+        .optional-note { font-size: 13px; color: #888; margin: 4px 0 0 30px; }
+        .disclaimer { font-size: 13px; color: #777; margin-top: 16px; }
+        .disclaimer a { color: #4f8cff; text-decoration: none; }
+        .disclaimer a:hover { text-decoration: underline; }
+        .btn-submit {
+            display: inline-block; padding: 14px 32px; background: #4f8cff; color: #fff; font-size: 16px;
+            font-weight: 600; border: none; border-radius: 8px; cursor: pointer; margin-top: 16px;
+            transition: background 0.2s;
+        }
+        .btn-submit:hover { background: #3a74e0; }
+        .btn-submit:disabled { background: #a0bfff; cursor: not-allowed; }
+        .success-msg {
+            display: none; background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 10px;
+            padding: 20px 24px; margin-top: 20px; color: #2e7d32; font-size: 15px; line-height: 1.5;
+        }
+        .success-msg strong { font-size: 17px; }
+        .info-section { margin-top: 40px; }
+        .info-section h2 { font-size: 18px; }
+        .info-section p, .info-section li { font-size: 14px; color: #555; }
+        .info-section a { color: #4f8cff; text-decoration: none; }
+        .info-section a:hover { text-decoration: underline; }
+        @media (max-width: 600px) {
+            body { padding: 24px 16px; }
+            .form-section { padding: 20px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Sally AI Assistant — SMS Notifications</h1>
+    <p class="subtitle">Sign up to receive text message notifications about your sports court bookings, scheduling updates, and reminders.</p>
+
+    <div class="form-section" id="signupForm">
+        <label class="field-label" for="phone">Mobile Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="(310) 555-1234" autocomplete="tel" required>
+
+        <div class="consent-row">
+            <input type="checkbox" id="smsConsent" name="smsConsent">
+            <label for="smsConsent" class="consent-text">
+                I agree to receive SMS notifications from Sally AI Assistant about sports court bookings, scheduling updates, and reminders. Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe, HELP for help. Consent is not required to use our services.
+            </label>
+        </div>
+        <p class="optional-note">Checking this box is optional — you may continue using our services without opting in to SMS notifications.</p>
+
+        <p class="disclaimer">
+            By submitting this form, you acknowledge that you have read our
+            <a href="https://sallyae.github.io/privacy.html">Privacy Policy</a> and
+            <a href="https://sallyae.github.io/terms.html">Terms of Service</a>.
+        </p>
+
+        <button class="btn-submit" id="submitBtn" onclick="handleSubmit()">Sign Up</button>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+        <strong>✅ You're signed up!</strong><br>
+        You'll receive booking notifications via SMS. You can opt out at any time by replying STOP to any message.
+    </div>
+
+    <div class="info-section">
+        <h2>What messages will I receive?</h2>
+        <p>Sally AI Assistant sends SMS notifications related to sports court bookings you're involved in. This includes:</p>
+        <ul>
+            <li>Booking confirmations and reminders</li>
+            <li>Schedule changes or cancellations</li>
+            <li>Court availability updates</li>
+            <li>Session reminders before your scheduled play time</li>
+        </ul>
+        <p>Message frequency varies based on your booking activity. Most users receive 1–5 messages per week.</p>
+
+        <h2>How to opt out</h2>
+        <p>You can stop receiving SMS messages at any time. Simply reply <strong>STOP</strong> to any message from Sally AI Assistant. You will receive a confirmation that you've been unsubscribed and will no longer receive text messages from us.</p>
+
+        <h2>How to get help</h2>
+        <p>If you need assistance, you can:</p>
+        <ul>
+            <li>Reply <strong>HELP</strong> to any message from Sally AI Assistant</li>
+            <li>Email us at <a href="mailto:sally@sallyae.com">sally@sallyae.com</a></li>
+        </ul>
+
+        <h2>Privacy</h2>
+        <p>We respect your privacy. Your phone number and personal information will never be shared with third parties for marketing purposes. For full details, please review our <a href="https://sallyae.github.io/privacy.html">Privacy Policy</a>.</p>
+    </div>
+
+    <script>
+        function handleSubmit() {
+            var phone = document.getElementById('phone').value.trim();
+            if (!phone) {
+                document.getElementById('phone').focus();
+                return;
+            }
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
